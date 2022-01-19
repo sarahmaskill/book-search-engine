@@ -6,7 +6,6 @@ type User {
     username: String!
     email: String!
     password: String!
-    bookCount: Int!
     savedBooks: [Book]
   }
 
@@ -26,7 +25,6 @@ type User {
     authors: [String!]
     description: String!
     image: String!
-    link: String!
     title: String!
   }
 input BookInput {
