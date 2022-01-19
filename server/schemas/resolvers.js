@@ -4,8 +4,8 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    userData: async (parent, { _id} ) => {
-        return await User.findById(_id)
+    userData: async (parent, { _id } ) => {
+        return await User.findById( _id )
         }
     },
 
@@ -32,10 +32,10 @@ const resolvers = {
 
       return { token, user };
     },
-    saveBook: async (parent, { _id, bookData }) => {
+    saveBook: async (parent, { _id, book }) => {
         const updatedUser = await User.findByIdAndUpdate(
             _id,
-            { $push: { savedBooks: bookData } },
+            { $push: { savedBooks: book } },
             { new: true }
           );
   
@@ -47,7 +47,6 @@ const resolvers = {
           const updatedUser = await User.findOneAndUpdate(
             _id,
             { $pull: { savedBooks: { bookId } } },
-            { new: true }
           );
   
           return updatedUser;
