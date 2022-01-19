@@ -13,18 +13,33 @@ import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 
 const SavedBooks = () => {
+<<<<<<< HEAD
   let {
     data: { _id },
   } = Auth.getProfile();
   const { loading, data, refetch, error } = useQuery(QUERY_ME, {
     variables: { _id },
   });
+=======
+  const { data: { _id } } = Auth.getProfile()
+  const { data, refetch, error } = useQuery(QUERY_ME, {
+    variables: { _id }
+  })
+>>>>>>> parent of 07bf182 (saved books loading need to fix delte book)
   if (error) {
     console.log(error);
   }
+<<<<<<< HEAD
   refetch();
   const [removeBook] = useMutation(REMOVE_BOOK);
   let userData = data?.userData || {};
+=======
+  refetch()
+  let userData = data?.userData || []
+  console.log(userData)
+  const [removeBook] = useMutation(REMOVE_BOOK);
+
+>>>>>>> parent of 07bf182 (saved books loading need to fix delte book)
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
@@ -37,7 +52,10 @@ const SavedBooks = () => {
       });
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
+<<<<<<< HEAD
       // window.location.assign('/saved');
+=======
+>>>>>>> parent of 07bf182 (saved books loading need to fix delte book)
     } catch (err) {
       console.error(err.networkError.result.errors);
     }
@@ -51,6 +69,7 @@ const SavedBooks = () => {
         </Container>
       </Jumbotron>
       <Container>
+<<<<<<< HEAD
         {loading ? (
           <h2>LOADING...</h2>
         ) : (
@@ -90,6 +109,30 @@ const SavedBooks = () => {
             </CardColumns>
           </>
         )}
+=======
+        <h2>
+          {userData.savedBooks.length
+            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
+            : 'You have no saved books!'}
+        </h2>
+        <CardColumns>
+          {userData.savedBooks.map((book) => {
+            return (
+              <Card key={book.bookId} border='dark'>
+                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                <Card.Body>
+                  <Card.Title>{book.title}</Card.Title>
+                  <p className='small'>Authors: {book.authors}</p>
+                  <Card.Text>{book.description}</Card.Text>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
+                    Delete this Book!
+                  </Button>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+>>>>>>> parent of 07bf182 (saved books loading need to fix delte book)
       </Container>
     </>
   );
