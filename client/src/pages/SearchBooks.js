@@ -72,12 +72,12 @@ const SearchBooks = () => {
       await saveBook({
         variables: { 
           _id,
-          bookData: { ...bookToSave } },
+          book: { ...bookToSave } },
       });
       console.log(savedBookIds);
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
-      console.error(err);
+      console.error(err.networkError.result.errors);
     }
   };
 

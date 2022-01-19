@@ -13,7 +13,7 @@ const SavedBooks = () => {
   })
   console.log(data?.userData)
   if (error) {
-    console.log(error)
+    console.log(error.networkError.result.errors)
   }
   refetch()
   const [removeBook] = useMutation(REMOVE_BOOK);
