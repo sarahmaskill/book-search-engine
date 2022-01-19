@@ -61,7 +61,6 @@ const SearchBooks = () => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
     const { data: { _id } } = Auth.getProfile()
-    console.log(_id)
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 

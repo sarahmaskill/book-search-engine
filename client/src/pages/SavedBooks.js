@@ -8,14 +8,14 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
   const { data: { _id } } = Auth.getProfile()
-  const { loading, data, refetch, error } = useQuery(QUERY_ME, {
+  const { data, refetch, error } = useQuery(QUERY_ME, {
     variables: { _id }
   })
   if (error) {
     console.log(error)
   }
   refetch()
-  const userData = data?.me || []
+  let userData = data?.userData || []
   console.log(userData)
   const [removeBook] = useMutation(REMOVE_BOOK);
 

@@ -18,7 +18,7 @@ type User {
 
 
   type Query {
-    getMe(_id:ID!): User
+    userData(_id:ID!): User
   }
 
   type Book {
